@@ -1,6 +1,6 @@
 ** Real-Time Task Board**
 
-A collaborative Kanban-style task board built with React, Zustand, react-beautiful-dnd, and Socket.IO.
+A collaborative task board built with React, Zustand, react-beautiful-dnd, and Socket.IO.
 It supports real-time updates across multiple users, drag-and-drop tasks, and live online user count.
 
 ** Features & Functionality**
@@ -27,9 +27,9 @@ Shows number of users online in the header
 
 Expandable inline editor for tasks and columns
 
-**🚀 Setup & Run Instructions**
-1. Clone the repository
-git clone https://github.com/your-username/realtime-task-board.git
+** Setup & Run Instructions**
+1. Clone the repository /n
+git clone https://github.com/ROHIT3496484/Todo-Tasks.git
 cd realtime-task-board
 
 2. Start the backend server
@@ -53,37 +53,38 @@ Default: opens at http://localhost:3000
 
 ** Real-Time Architecture & Data Flow**
 
-The project uses a client-server architecture with event-driven updates.
+**Frontend (React + Zustand)**
 
-flowchart TD
-    A[User Action<br>(Add/Edit/Drag)] --> B[Zustand Store<br>(Frontend State)]
-    B --> C[Socket.IO Client<br>Emit updateBoard]
-    C --> D[Socket.IO Server]
-    D -->|Broadcast board| E[All Connected Clients]
-    E --> F[Zustand Store Updates]
-    F --> G[React Re-render<br>Updated UI]
+UI state is managed in a central store (store.js).
 
+When a user adds/edits/moves tasks, the store is updated and changes are sent to the server via Socket.IO.
 
-Step by step example (moving a task):
+**Backend (Node + Socket.IO)**
+
+Maintains a single copy of the shared board state.
+
+Listens for updates from clients and broadcasts them to everyone else.
+
+Data Flow Example (dragging a task)
 
 User drags a task into a new column.
 
-onDragEnd updates the local board state (Zustand).
+onDragEnd updates the local board state.
 
-The store emits "updateBoard" through Socket.IO.
+Store emits "updateBoard" through the socket.
 
-The backend receives it and broadcasts the updated board to everyone.
+Server receives the update and broadcasts the new board to all connected clients.
 
-All clients update their state and re-render instantly.
+All clients receive "board" and update their local UI instantly.
+
+This makes the board eventually consistent across all browsers in real time.
 
 ** Tradeoffs & Limitations**
 
-Single shared board: Currently only one board is supported. Multi-board workspaces would need backend extension.
+Currently only one board is supported. Multi-board workspaces would need backend extension.
 
-No persistence: Board state lives in server memory. Restarting clears everything. Persistence could be added via a database (MongoDB, Postgres, Redis).
+Board state lives in server memory. Restarting clears everything. Persistence could be added via a database (MongoDB, Postgres, Redis).
 
-Conflict resolution: Uses last write wins. If two people edit the same task at once, the latest update overrides the earlier one.
+Uses last write wins. If two people edit the same task at once, the latest update overrides the earlier one.
 
-Drag-and-drop edge cases: react-beautiful-dnd handles most cases well, but empty columns needed extra handling (min-height drop zones).
-
-Scalability: Works well for small teams. For larger scale, horizontal scaling and sticky sessions (or Redis pub/sub) would be needed.
+UI Enhancement needed.
