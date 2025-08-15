@@ -32,7 +32,7 @@ Expandable inline editor for tasks and columns
 
 git clone https://github.com/ROHIT3496484/Todo-Tasks.git
 
-cd realtime-task-board
+cd Todo-Tasks-main
 
 2. Start the backend server
 
@@ -80,13 +80,13 @@ Data Flow Example (dragging a task)
 
 User drags a task into a new column.
 
-onDragEnd updates the local board state.
+That updates the local board state.
 
-Store emits "updateBoard" through the socket.
+Store emits through the socket.
 
 Server receives the update and broadcasts the new board to all connected clients.
 
-All clients receive "board" and update their local UI instantly.
+All clients receive and update their local UI instantly.
 
 This makes the board eventually consistent across all browsers in real time.
 
