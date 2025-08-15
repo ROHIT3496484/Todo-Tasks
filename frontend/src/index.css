@@ -1,0 +1,277 @@
+.App{
+  color: lightblue;
+}
+body {
+  font-family: sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  color: #333;  
+}
+header {
+  padding: 20px;
+  background-color: lightblue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+.board {
+  position: relative;
+  display: flex;
+  overflow-x: auto;
+  padding: 20px;
+  gap: 10px;
+  background-color: lightblue;
+}
+.add-column{
+  background-color: lightblue;
+}
+
+.Addcolumn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 20px ;
+  background-color: rgb(27, 109, 27);
+  color: white;
+  border: none;
+}
+.columncreate {
+  width: 200px;
+  height: 50px;
+  background-color: rgb(12, 180, 236);
+  padding: 10px;
+  border-radius: 5px;
+  margin-left: 20px;
+  justify-content: center;
+  position: relative;
+}
+.columncreate input {
+  width: 80%;
+  padding: 5px;
+  border-radius: 3px;
+
+  border: none;
+  margin-bottom: 10px;
+}
+.add-columntile{
+  position: absolute;
+  bottom: 7px;
+  width: 70px ;
+  left: 60px;
+  background-color: rgb(27, 109, 27);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+
+}
+.cancel-column {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: rgb(12, 180, 236);
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  font-size: large;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+.column {
+  background: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  background-color: rgb(12, 180, 236);
+}
+.task {
+  position: relative; 
+  background: #eee;
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 3px;
+  height: 30px;
+  min-height: 60px;  
+  padding: 4px; 
+}
+.onEdit {
+  background-color: rgb(27, 109, 27);
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 5px;
+  position: absolute;
+  font-size: small;
+  font-weight: medium;
+  top: 0px;
+  right: 30px;
+  align-self: flex-end;
+  align-self: flex-start;
+  height: 25px;
+  width: 20px;
+}
+.onDelete {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 3px;
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  right: 8px;
+  font-size: large;
+  font-weight: bold;
+  align-self: flex-end;
+  align-self: flex-start;
+  height: 25px;
+  width: 20px;
+}
+.task {
+  background-color: lightblue;
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 3px;
+  height: 80px;
+  justify-content: center;
+  overflow: auto;
+}
+
+.delete-column {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 30px;
+  border-radius: 5px;
+  background: transparent;
+  border: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  align-self: flex-end;
+  align-self: flex-start;
+}
+.task-card {
+  background: #fff;
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 5px;
+}
+.green {
+  color: green;
+  font-size: 10px;
+}
+.Add-Tasks{
+  background-color: rgb(27, 109, 27);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+  position: relative;
+  
+}
+.add-newtask{
+  background-color: rgb(27, 109, 27);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.cancel-task{
+  position: absolute;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-left: 10px;
+
+}
+.edit-column {
+  background-color: rgb(27, 109, 27);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.cancel-editcolumn{
+  position: absolute;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-left: 90px;
+  align-self: flex-end;
+}
+.task-view{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightblue;
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 3px;
+}
+.task-editing{
+  background-color: lightblue;
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 3px;
+  height: 60px; 
+  width: 90%;
+ 
+}
+.edit-task{
+  background-color: rgb(27, 109, 27);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.cancel-edittask{
+  position: absolute;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-left: 90px;
+}
+.empty-drop-zone {
+  height: 48px;
+  border: 2px dashed #bbb;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 12px;
+  background: #f9f9f9;
+}
