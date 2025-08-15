@@ -66,7 +66,7 @@ This makes the board eventually consistent across all browsers in real time.
 
 Single shared state: The server keeps only one board. If multiple different boards/workspaces are needed, the backend must be extended.
 
-No persistence: Currently, state is in memory only. Restarting the server wipes the board. (You could add a database like MongoDB or Postgres for persistence.)
+No persistence: Currently, state is in memory only. Restarting the server wipes the board. (You could add a database like MongoDB or Postgres for persistence.
 
 Basic conflict resolution: The “last write wins” model is used. If two users edit the same task at the same time, whichever update arrives last overwrites the other.
 
