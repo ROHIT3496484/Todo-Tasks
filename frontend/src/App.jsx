@@ -18,7 +18,7 @@ const App=()=> {
   }, [setBoard, setOnlineUsers]);
 
   return (
-    <div>
+    <div className="App">
       <header className="header">
         <h1 >Real-Time Task Board</h1>
         <p> <span className="green">🟢</span> {onlineUsers} users online</p>

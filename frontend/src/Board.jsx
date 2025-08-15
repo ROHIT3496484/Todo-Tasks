@@ -12,37 +12,41 @@ export default function Board() {
     if (!result.destination) return;
 
     const { source, destination, type } = result;
-    const copy = { ...board, columns: [...board.columns] };
+
+    // Deep copy columns AND tasks to avoid mutating original references
+    const columns = board.columns.map(col => ({
+      ...col,
+      tasks: [...col.tasks],
+    }));
+    const nextBoard = { ...board, columns };
 
     if (type === "column") {
-      const moved = copy.columns.splice(source.index, 1)[0];
-      copy.columns.splice(destination.index, 0, moved);
+      const [moved] = columns.splice(source.index, 1);
+      columns.splice(destination.index, 0, moved);
     } else {
-      const fromCol = copy.columns.find(c => c.id === source.droppableId);
-      const toCol = copy.columns.find(c => c.id === destination.droppableId);
-      const task = fromCol.tasks.splice(source.index, 1)[0];
-      toCol.tasks.splice(destination.index, 0, task);
+      const fromIdx = columns.findIndex(c => c.id === source.droppableId);
+      const toIdx   = columns.findIndex(c => c.id === destination.droppableId);
+      if (fromIdx === -1 || toIdx === -1) return;
+
+      const [movedTask] = columns[fromIdx].tasks.splice(source.index, 1);
+      columns[toIdx].tasks.splice(destination.index, 0, movedTask);
     }
 
-    updateBoard(copy);
+    updateBoard(nextBoard);
   }
 
   function addColumn(title) {
-    const copy = { ...board, columns: [...board.columns] };
-    copy.columns.push({
-      id: Date.now().toString(),
-      title,
-      tasks: []
-    });
-    updateBoard(copy);
+    const columns = [
+      ...board.columns,
+      { id: Date.now().toString(), title, tasks: [] },
+    ];
+    updateBoard({ ...board, columns });
   }
 
   return (
     <DragDropContext onDragEnd={handleDrag}>
       <AddColumnForm onAdd={addColumn} />
-
       {board.columns.length === 0 && <p>No columns yet</p>}
-
       <ColumnList columns={board.columns} />
     </DragDropContext>
   );
