@@ -1,9 +1,8 @@
-**Real-Time Task Board**
-
+# Real-Time Task Board
 A collaborative task board built with React, Zustand, react-beautiful-dnd, and Socket.IO.
 It supports real-time updates across multiple users, drag-and-drop tasks, and live online user count.
 
-**Features & Functionality**
+## Features & Functionality
 
  Add, edit, and delete columns
 
@@ -27,28 +26,34 @@ Shows number of users online in the header
 
 Expandable inline editor for tasks and columns
 
-**Setup & Run Instructions**
-1. Clone the repository
+## Setup & Run Instructions
+### 1. Clone the repository
 
+```bash
 git clone https://github.com/ROHIT3496484/Todo-Tasks.git
 
 cd Todo-Tasks-main
+```
 
-2. Start the backend server
+
+### 2. Start the backend server
 
 The backend uses Node.js + Socket.IO.
-
+```bash
 cd backend
 
 npm install
 
 npm run start
+```
+
 
 
 Default: runs at http://localhost:4000
 
-3. Start the React frontend
+### 3. Start the React frontend
 
+```bash
 cd frontend
 
 npm create vite@latest .   
@@ -58,19 +63,22 @@ npm install
 npm install zustand react-beautiful-dnd socket.io-client
 
 npm run dev
+```
+
+
 
 
 Default: opens at http://localhost:3000
 
-**Real-Time Architecture & Data Flow**
+### Real-Time Architecture & Data Flow
 
-**Frontend (React + Zustand)**
+#### Frontend (React + Zustand)
 
 UI state is managed in a central store (store.js).
 
 When a user adds/edits/moves tasks, the store is updated and changes are sent to the server via Socket.IO.
 
-**Backend (Node + Socket.IO)**
+#### Backend (Node + Socket.IO)
 
 Maintains a single copy of the shared board state.
 
@@ -90,9 +98,9 @@ All clients receive and update their local UI instantly.
 
 This makes the board eventually consistent across all browsers in real time.
 
-**Tradeoffs & Limitations**
+### Tradeoffs & Limitations
 
-Currently only one board is supported. Multi-board workspaces would need backend extension.
+Currently, only one board is supported. Multi-board workspaces would need a backend extension.
 
 Board state lives in server memory. Restarting clears everything. Persistence could be added via a database (MongoDB, Postgres, Redis).
 
