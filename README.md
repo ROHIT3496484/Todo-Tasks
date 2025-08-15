@@ -1,9 +1,9 @@
-** Real-Time Task Board**
+**Real-Time Task Board**
 
 A collaborative task board built with React, Zustand, react-beautiful-dnd, and Socket.IO.
 It supports real-time updates across multiple users, drag-and-drop tasks, and live online user count.
 
-** Features & Functionality**
+**Features & Functionality**
 
  Add, edit, and delete columns
 
@@ -27,7 +27,7 @@ Shows number of users online in the header
 
 Expandable inline editor for tasks and columns
 
-** Setup & Run Instructions**
+**Setup & Run Instructions**
 1. Clone the repository
 
 git clone https://github.com/ROHIT3496484/Todo-Tasks.git
@@ -58,7 +58,7 @@ npm start
 
 Default: opens at http://localhost:3000
 
-** Real-Time Architecture & Data Flow**
+**Real-Time Architecture & Data Flow**
 
 **Frontend (React + Zustand)**
 
@@ -86,7 +86,7 @@ All clients receive "board" and update their local UI instantly.
 
 This makes the board eventually consistent across all browsers in real time.
 
-** Tradeoffs & Limitations**
+**Tradeoffs & Limitations**
 
 Currently only one board is supported. Multi-board workspaces would need backend extension.
 
