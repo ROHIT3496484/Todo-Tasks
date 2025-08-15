@@ -8,8 +8,8 @@ This project lets you create columns, add tasks, drag tasks between columns, and
 
 Clone the repository
 
-git clone https://github.com/your-username/realtime-task-board.git
-cd realtime-task-board
+git clone https://github.com/ROHIT3496484/Todo-Tasks.git
+cd Todo-Tasks-main
 
 
 Install dependencies
