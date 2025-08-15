@@ -28,8 +28,10 @@ Shows number of users online in the header
 Expandable inline editor for tasks and columns
 
 ** Setup & Run Instructions**
-1. Clone the repository /n
+1. Clone the repository
+
 git clone https://github.com/ROHIT3496484/Todo-Tasks.git
+
 cd realtime-task-board
 
 2. Start the backend server
@@ -37,15 +39,20 @@ cd realtime-task-board
 The backend uses Node.js + Socket.IO.
 
 cd server
+
 npm install
+
 npm start
 
 
 Default: runs at http://localhost:4000
 
 3. Start the React frontend
+
 cd client
+
 npm install
+
 npm start
 
 
