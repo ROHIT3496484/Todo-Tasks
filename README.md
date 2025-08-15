@@ -70,15 +70,15 @@ npm run dev
 
 Default: opens at http://localhost:3000
 
-### Real-Time Architecture & Data Flow
+## Real-Time Architecture & Data Flow
 
-#### Frontend (React + Zustand)
+### Frontend (React + Zustand)
 
 UI state is managed in a central store (store.js).
 
 When a user adds/edits/moves tasks, the store is updated and changes are sent to the server via Socket.IO.
 
-#### Backend (Node + Socket.IO)
+### Backend (Node + Socket.IO)
 
 Maintains a single copy of the shared board state.
 
@@ -98,7 +98,7 @@ All clients receive and update their local UI instantly.
 
 This makes the board eventually consistent across all browsers in real time.
 
-### Tradeoffs & Limitations
+## Tradeoffs & Limitations
 
 Currently, only one board is supported. Multi-board workspaces would need a backend extension.
 
