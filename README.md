@@ -38,22 +38,26 @@ cd realtime-task-board
 
 The backend uses Node.js + Socket.IO.
 
-cd server
+cd backend
 
 npm install
 
-npm start
+npm run start
 
 
 Default: runs at http://localhost:4000
 
 3. Start the React frontend
 
-cd client
+cd frontend
 
-npm install
+npm create vite@latest .   
 
-npm start
+npm install    
+            
+npm install zustand react-beautiful-dnd socket.io-client
+
+npm run dev
 
 
 Default: opens at http://localhost:3000
