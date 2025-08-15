@@ -1,75 +1,89 @@
-**Real-Time Task Board**
+** Real-Time Task Board**
 
-A collaborative task board built with React, Zustand for state management, react-beautiful-dnd for drag & drop, and Socket.IO for real-time synchronization across multiple users.
+A collaborative Kanban-style task board built with React, Zustand, react-beautiful-dnd, and Socket.IO.
+It supports real-time updates across multiple users, drag-and-drop tasks, and live online user count.
 
-This project lets you create columns, add tasks, drag tasks between columns, and see updates instantly reflected for all connected users.
+** Features & Functionality**
 
-**Setup & Run Instructions**
+ Add, edit, and delete columns
 
-**Clone the repository**
+ Add, edit, and delete tasks inside columns
 
-git clone https://github.com/ROHIT3496484/Todo-Tasks.git
-cd Todo-Tasks-main
+ Drag & drop support for:
 
+Reordering tasks within a column
 
-Install dependencies
+Moving tasks between columns
 
-npm install
+Reordering entire columns
 
+ Real-time collaboration
 
-Start the backend server (must be running for real-time sync)
+All changes sync instantly between connected clients using Socket.IO
+
+Shows number of users online in the header
+
+ Clean UI/UX
+
+Expandable inline editor for tasks and columns
+
+**🚀 Setup & Run Instructions**
+1. Clone the repository
+git clone https://github.com/your-username/realtime-task-board.git
+cd realtime-task-board
+
+2. Start the backend server
+
+The backend uses Node.js + Socket.IO.
 
 cd server
 npm install
 npm start
 
 
-By default it runs at http://localhost:4000.
+Default: runs at http://localhost:4000
 
-Start the React frontend
-
+3. Start the React frontend
 cd client
+npm install
 npm start
 
 
-The app will open at http://localhost:3000.
+Default: opens at http://localhost:3000
 
-**Real-Time Architecture & Data Flow**
+** Real-Time Architecture & Data Flow**
 
-Frontend (React + Zustand)
+The project uses a client-server architecture with event-driven updates.
 
-UI state is managed in a central store (store.js).
+flowchart TD
+    A[User Action<br>(Add/Edit/Drag)] --> B[Zustand Store<br>(Frontend State)]
+    B --> C[Socket.IO Client<br>Emit updateBoard]
+    C --> D[Socket.IO Server]
+    D -->|Broadcast board| E[All Connected Clients]
+    E --> F[Zustand Store Updates]
+    F --> G[React Re-render<br>Updated UI]
 
-When a user adds/edits/moves tasks, the store is updated and changes are sent to the server via Socket.IO.
 
-Backend (Node + Socket.IO)
-
-Maintains a single copy of the shared board state.
-
-Listens for updates from clients and broadcasts them to everyone else.
-
-Data Flow Example (dragging a task)
+Step by step example (moving a task):
 
 User drags a task into a new column.
 
-onDragEnd updates the local board state.
+onDragEnd updates the local board state (Zustand).
 
-Store emits "updateBoard" through the socket.
+The store emits "updateBoard" through Socket.IO.
 
-Server receives the update and broadcasts the new board to all connected clients.
+The backend receives it and broadcasts the updated board to everyone.
 
-All clients receive "board" and update their local UI instantly.
+All clients update their state and re-render instantly.
 
-This makes the board eventually consistent across all browsers in real time.
+** Tradeoffs & Limitations**
 
-**Tradeoffs & Limitations**
+Single shared board: Currently only one board is supported. Multi-board workspaces would need backend extension.
 
-Single shared state: The server keeps only one board. If multiple different boards/workspaces are needed, the backend must be extended.
+No persistence: Board state lives in server memory. Restarting clears everything. Persistence could be added via a database (MongoDB, Postgres, Redis).
 
-No persistence: Currently, state is in memory only. Restarting the server removes the board. 
+Conflict resolution: Uses last write wins. If two people edit the same task at once, the latest update overrides the earlier one.
 
-Basic conflict resolution: The “last write wins” model is used. If two users edit the same task at the same time, whichever update arrives last overwrites the other.
+Drag-and-drop edge cases: react-beautiful-dnd handles most cases well, but empty columns needed extra handling (min-height drop zones).
 
-Drag & drop library: react-beautiful-dnd is powerful but can be tricky with edge cases.
-
-UI Enhancement needed.
+Scalability: Works well for small teams. For larger scale, horizontal scaling and sticky sessions (or Redis pub/sub) would be needed.
